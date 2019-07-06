@@ -7,16 +7,18 @@
       <a [routerLink]="['add']" class="w3-button w3-dark-grey w3-section w3-right">Add</a>
     </div>
     <div class="w3-col m12">
-      <div class="w3-responsive">
+      <div *ngIf="list" class="w3-responsive">
         <table class="w3-table-all">
           <tr>
             <th>#</th>
             <th>Name</th>
+            <th>Summary</th>
             <th>Actions</th>
           </tr>
-          <tr>
-            <td>1</td>
-            <td>Food</td>
+          <tr *ngFor="let account of list">
+            <td> {{ account.id }} </td>
+            <td> {{ account.name }} </td>
+            <td> {{ account.summary }} </td>
             <td>
               <a [routerLink]="['edit',1]">Edit</a> &nbsp;&nbsp;&nbsp;
               <a [routerLink]="['delete',1]">Delete</a>

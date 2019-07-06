@@ -1,3 +1,4 @@
+import { AccountService } from './../../services/account.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  public list: any[];
+
+  constructor(private as: AccountService) { }
 
   ngOnInit() {
+    this.getAccounts();
+  }
+
+  getAccounts() {
+    this.as.getAccounts().subscribe((Response: any) => {
+      this.list = Response.data;
+    }, (error) => {
+      console.log(error);
+    });
   }
 
 }

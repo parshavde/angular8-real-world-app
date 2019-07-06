@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditComponent implements OnInit {
 
-  constructor() { }
+  public categoryForm: FormGroup;
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.createCategoryForm();
+  }
+
+  createCategoryForm() {
+    this.categoryForm = this.fb.group({
+      id: [null],
+      name: [null, Validators.required]
+    })
+  }
+
+  save() {
+    console.log(this.categoryForm.valid)
+    console.log(this.categoryForm.value)
   }
 
 }

@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/auth-guard.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
@@ -18,15 +19,18 @@ const routes: Routes = [
   },
   {
     path: 'category',
-    loadChildren: () => import('./category/category.module').then(mod => mod.CategoryModule)
+    loadChildren: () => import('./category/category.module').then(mod => mod.CategoryModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'account',
-    loadChildren: () => import('./account/account.module').then(mod => mod.AccountModule)
+    loadChildren: () => import('./account/account.module').then(mod => mod.AccountModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'transaction',
-    loadChildren: () => import('./transaction/transaction.module').then(mod => mod.TransactionModule)
+    loadChildren: () => import('./transaction/transaction.module').then(mod => mod.TransactionModule),
+    canActivate: [AuthGuard],
   }
 ];
 
